@@ -1,4 +1,4 @@
-# Marlin 3D Printer Firmware for Anycubic Mega Zero
+# Anycubic Mega Zero + BTT SKR 1.4 Turbo
 
 Configuration:
   1.  Controller BTT SKR 1.4 Turbo Board + TMC 2209 
