@@ -1,7 +1,12 @@
 /**
  * Configuration:   27 June 
- * 1. Add manual LCD mesh bed levelling
- * 2. No bed heater.
+ * 1. Anycubic facory controller, Sanguino1284P
+ * 2. Add manual LCD mesh bed levelling
+ * 3. No bed heater.
+ * 4. No power oss recover.
+ */
+ 
+ /** 
  * 
  * 
  * 
@@ -495,10 +500,10 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
-  // Ultimaker
-  #define DEFAULT_Kp 22.2
-  #define DEFAULT_Ki 1.08
-  #define DEFAULT_Kd 114
+  // Mega Zero PID test
+  #define DEFAULT_Kp 24.81
+  #define DEFAULT_Ki 2.62
+  #define DEFAULT_Kd 58.63
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
