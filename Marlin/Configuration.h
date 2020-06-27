@@ -2,7 +2,7 @@
  * Configuration:   27 June 
  * 1. Add manual LCD mesh bed levelling
  * 2. No bed heater.
- * 3. No ARC support
+ * 
  * 
  * 
  * Marlin 3D Printer Firmware
