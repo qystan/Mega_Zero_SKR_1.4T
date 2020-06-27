@@ -132,7 +132,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "Anycubic Mega Zero SKR 1.4T"
+#define CUSTOM_MACHINE_NAME "Mega Zero SKR 1.4T"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like http://www.uuidgenerator.net/version4
@@ -489,10 +489,10 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
-  // Ultimaker
-  #define DEFAULT_Kp 22.2
-  #define DEFAULT_Ki 1.08
-  #define DEFAULT_Kd 114
+  // Mega Zero 200C PID test parameters
+  #define DEFAULT_Kp 24.81
+  #define DEFAULT_Ki 2.62
+  #define DEFAULT_Kd 58.63
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
