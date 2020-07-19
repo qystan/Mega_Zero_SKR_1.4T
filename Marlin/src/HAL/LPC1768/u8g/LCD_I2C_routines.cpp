@@ -28,10 +28,10 @@
 #include "../include/i2c_util.h"
 #include "../../../core/millis_t.h"
 
-extern int millis();
+extern int  millis();    // original declared as int
 
 #ifdef __cplusplus
-  extern "C" {
+  extern "C" {}
 #endif
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -116,8 +116,7 @@ void u8g_i2c_stop() {
 }
 
 
-#ifdef __cplusplus
-  }
+#ifdef __cplusplus 
 #endif
 
 #endif // TARGET_LPC1768
