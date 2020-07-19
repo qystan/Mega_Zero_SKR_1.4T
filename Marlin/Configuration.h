@@ -2,7 +2,7 @@
  *    Mega Zero + BTT SKR 1.4 Turbo
  */
 
-/*
+/**
  * 
  * Marlin 3D Printer Firmware
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
@@ -24,6 +24,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+#include <arduino.h>
+
 #pragma once
 
 /**
