@@ -1,5 +1,10 @@
 /**
- *    Mega Zero + BTT SKR 1.4 Turbo
+ *  Mega Zero + BTT SKR 1.4 Turbo
+ *  230 x 230 bed
+ *  Bed Heater bang/bang control
+ *  Manual mesh bed levelling
+ *  E1 assigned to pin P2_04 and turns on/off hotend fan at 50C 
+ *  
  */
 
 /**
@@ -1123,8 +1128,8 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 220
-#define Y_BED_SIZE 220
+#define X_BED_SIZE 230
+#define Y_BED_SIZE 230
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS -5
@@ -1345,7 +1350,7 @@
 #define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
-  #define MESH_EDIT_Z_STEP  0.01 // (mm) Step size while manually probing Z axis.
+  #define MESH_EDIT_Z_STEP  0.005 // (mm) Step size while manually probing Z axis.
   #define LCD_PROBE_Z_RANGE 4     // (mm) Z Range centered on Z_MIN_POS for LCD Z adjustment
   //#define MESH_EDIT_MENU        // Add a menu to edit mesh points
 #endif
