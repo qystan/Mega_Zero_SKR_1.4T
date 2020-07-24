@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -311,6 +311,7 @@
 #define BOARD_CHITU3D_V5              4030  // Chitu3D TronXY X5SA V5 Board
 #define BOARD_CHITU3D_V6              4031  // Chitu3D TronXY X5SA V5 Board
 #define BOARD_CREALITY_V4             4032  // Creality v4.x (STM32F103RE)
+#define BOARD_TRIGORILLA_PRO          4033  // Trigorilla Pro (STM32F103ZET6)
 
 //
 // ARM Cortex-M4F
@@ -337,11 +338,12 @@
 #define BOARD_BTT_BTT002_V1_0         4211  // BigTreeTech BTT002 v1.0 (STM32F407VG)
 #define BOARD_BTT_GTR_V1_0            4212  // BigTreeTech GTR v1.0 (STM32F407IGT)
 #define BOARD_LERDGE_K                4213  // Lerdge K (STM32F407ZG)
-#define BOARD_LERDGE_X                4214  // Lerdge X (STM32F407VE)
-#define BOARD_VAKE403D                4215  // VAkE 403D (STM32F446VET6)
-#define BOARD_FYSETC_S6               4216  // FYSETC S6 board
-#define BOARD_FLYF407ZG               4217  // FLYF407ZG board (STM32F407ZG)
-#define BOARD_MKS_ROBIN2              4218  // MKS_ROBIN2 (STM32F407ZE)
+#define BOARD_LERDGE_S                4214  // Lerdge S (STM32F407VE)
+#define BOARD_LERDGE_X                4215  // Lerdge X (STM32F407VE)
+#define BOARD_VAKE403D                4216  // VAkE 403D (STM32F446VET6)
+#define BOARD_FYSETC_S6               4217  // FYSETC S6 board
+#define BOARD_FLYF407ZG               4218  // FLYF407ZG board (STM32F407ZG)
+#define BOARD_MKS_ROBIN2              4219  // MKS_ROBIN2 (STM32F407ZE)
 
 //
 // ARM Cortex M7
