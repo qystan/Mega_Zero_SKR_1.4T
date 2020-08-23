@@ -341,10 +341,10 @@
 // then extrude some filament every couple of SECONDS.
 //#define EXTRUDER_RUNOUT_PREVENT
 #if ENABLED(EXTRUDER_RUNOUT_PREVENT)
-#define EXTRUDER_RUNOUT_MINTEMP 190
-#define EXTRUDER_RUNOUT_SECONDS 30
-#define EXTRUDER_RUNOUT_SPEED 1500 // (mm/m)
-#define EXTRUDER_RUNOUT_EXTRUDE 5  // (mm)
+  #define EXTRUDER_RUNOUT_MINTEMP 190
+  #define EXTRUDER_RUNOUT_SECONDS 30
+  #define EXTRUDER_RUNOUT_SPEED 1500  // (mm/min)
+  #define EXTRUDER_RUNOUT_EXTRUDE 5   // (mm)
 #endif
 
 /**
@@ -485,20 +485,17 @@
  */
 //#define CASE_LIGHT_ENABLE
 #if ENABLED(CASE_LIGHT_ENABLE)
-//#define CASE_LIGHT_PIN 4                  // Override the default pin if needed
-#define INVERT_CASE_LIGHT false           // Set true if Case Light is ON when pin is LOW
-#define CASE_LIGHT_DEFAULT_ON true        // Set default power-up state on
-#define CASE_LIGHT_DEFAULT_BRIGHTNESS 105 // Set default power-up brightness (0-255, requires PWM pin)
-//#define CASE_LIGHT_MAX_PWM 128            // Limit pwm
-//#define CASE_LIGHT_MENU                   // Add Case Light options to the LCD menu
-//#define CASE_LIGHT_NO_BRIGHTNESS          // Disable brightness control. Enable for non-PWM lighting.
-//#define CASE_LIGHT_USE_NEOPIXEL           // Use Neopixel LED as case light, requires NEOPIXEL_LED.
-#if ENABLED(CASE_LIGHT_USE_NEOPIXEL)
-#define CASE_LIGHT_NEOPIXEL_COLOR 
-  {                               
-    255, 255, 255, 255            
-  } // { Red, Green, Blue, White }
-#endif
+  //#define CASE_LIGHT_PIN 4                  // Override the default pin if needed
+  #define INVERT_CASE_LIGHT false             // Set true if Case Light is ON when pin is LOW
+  #define CASE_LIGHT_DEFAULT_ON true          // Set default power-up state on
+  #define CASE_LIGHT_DEFAULT_BRIGHTNESS 105   // Set default power-up brightness (0-255, requires PWM pin)
+  //#define CASE_LIGHT_MAX_PWM 128            // Limit pwm
+  //#define CASE_LIGHT_MENU                   // Add Case Light options to the LCD menu
+  //#define CASE_LIGHT_NO_BRIGHTNESS          // Disable brightness control. Enable for non-PWM lighting.
+  //#define CASE_LIGHT_USE_NEOPIXEL           // Use NeoPixel LED as case light, requires NEOPIXEL_LED.
+  #if ENABLED(CASE_LIGHT_USE_NEOPIXEL)
+    #define CASE_LIGHT_NEOPIXEL_COLOR { 255, 255, 255, 255 } // { Red, Green, Blue, White }
+  #endif
 #endif
 
 // @section homing
@@ -839,12 +836,12 @@
 
 //#define HOME_AFTER_DEACTIVATE  // Require rehoming after steppers are deactivated
 
-// Minimum time that a segment needs to take as the buffer gets emptied
-#define DEFAULT_MINSEGMENTTIME        20000   // (µs) Set with M205 B.
-
 // Default Minimum Feedrates for printing and travel moves
 #define DEFAULT_MINIMUMFEEDRATE       0.0     // (mm/s) Minimum feedrate. Set with M205 S.
 #define DEFAULT_MINTRAVELFEEDRATE     0.0     // (mm/s) Minimum travel feedrate. Set with M205 T.
+
+// Minimum time that a segment needs to take as the buffer gets emptied
+#define DEFAULT_MINSEGMENTTIME        20000   // (µs) Set with M205 B.
 
 // Slow down the machine if the lookahead buffer is (by default) half full.
 // Increase the slowdown divisor for larger buffer sizes.
@@ -875,34 +872,31 @@
 //
 //#define BACKLASH_COMPENSATION
 #if ENABLED(BACKLASH_COMPENSATION)
-// Define values for backlash distance and correction.
-// If BACKLASH_GCODE is enabled these values are the defaults.
-#define BACKLASH_DISTANCE_MM 
-  {                          
-    0, 0, 0                  
-  }                             // (mm)
-#define BACKLASH_CORRECTION 0.0 // 0.0 = no correction; 1.0 = full correction
+  // Define values for backlash distance and correction.
+  // If BACKLASH_GCODE is enabled these values are the defaults.
+  #define BACKLASH_DISTANCE_MM { 0, 0, 0 } // (mm)
+  #define BACKLASH_CORRECTION    0.0       // 0.0 = no correction; 1.0 = full correction
 
-// Set BACKLASH_SMOOTHING_MM to spread backlash correction over multiple segments
-// to reduce print artifacts. (Enabling this is costly in memory and computation!)
-//#define BACKLASH_SMOOTHING_MM 3 // (mm)
+  // Set BACKLASH_SMOOTHING_MM to spread backlash correction over multiple segments
+  // to reduce print artifacts. (Enabling this is costly in memory and computation!)
+  //#define BACKLASH_SMOOTHING_MM 3 // (mm)
 
-// Add runtime configuration and tuning of backlash values (M425)
-//#define BACKLASH_GCODE
+  // Add runtime configuration and tuning of backlash values (M425)
+  //#define BACKLASH_GCODE
 
-#if ENABLED(BACKLASH_GCODE)
-// Measure the Z backlash when probing (G29) and set with "M425 Z"
-#define MEASURE_BACKLASH_WHEN_PROBING
+  #if ENABLED(BACKLASH_GCODE)
+    // Measure the Z backlash when probing (G29) and set with "M425 Z"
+    #define MEASURE_BACKLASH_WHEN_PROBING
 
-#if ENABLED(MEASURE_BACKLASH_WHEN_PROBING)
-// When measuring, the probe will move up to BACKLASH_MEASUREMENT_LIMIT
-// mm away from point of contact in BACKLASH_MEASUREMENT_RESOLUTION
-// increments while checking for the contact to be broken.
-#define BACKLASH_MEASUREMENT_LIMIT 0.5                   // (mm)
-#define BACKLASH_MEASUREMENT_RESOLUTION 0.005            // (mm)
-#define BACKLASH_MEASUREMENT_FEEDRATE Z_PROBE_SPEED_SLOW // (mm/m)
-#endif
-#endif
+    #if ENABLED(MEASURE_BACKLASH_WHEN_PROBING)
+      // When measuring, the probe will move up to BACKLASH_MEASUREMENT_LIMIT
+      // mm away from point of contact in BACKLASH_MEASUREMENT_RESOLUTION
+      // increments while checking for the contact to be broken.
+      #define BACKLASH_MEASUREMENT_LIMIT       0.5   // (mm)
+      #define BACKLASH_MEASUREMENT_RESOLUTION  0.005 // (mm)
+      #define BACKLASH_MEASUREMENT_FEEDRATE    Z_PROBE_SPEED_SLOW // (mm/min)
+    #endif
+  #endif
 #endif
 
 /**
@@ -926,45 +920,39 @@
 
   #define CALIBRATION_MEASUREMENT_RESOLUTION     0.01 // mm
 
-#define CALIBRATION_FEEDRATE_SLOW 60     // mm/m
-#define CALIBRATION_FEEDRATE_FAST 1200   // mm/m
-#define CALIBRATION_FEEDRATE_TRAVEL 3000 // mm/m
+  #define CALIBRATION_FEEDRATE_SLOW             60    // mm/min
+  #define CALIBRATION_FEEDRATE_FAST           1200    // mm/min
+  #define CALIBRATION_FEEDRATE_TRAVEL         3000    // mm/min
 
-// The following parameters refer to the conical section of the nozzle tip.
-#define CALIBRATION_NOZZLE_TIP_HEIGHT 1.0     // mm
-#define CALIBRATION_NOZZLE_OUTER_DIAMETER 2.0 // mm
+  // The following parameters refer to the conical section of the nozzle tip.
+  #define CALIBRATION_NOZZLE_TIP_HEIGHT          1.0  // mm
+  #define CALIBRATION_NOZZLE_OUTER_DIAMETER      2.0  // mm
 
-// Uncomment to enable reporting (required for "G425 V", but consumes PROGMEM).
-//#define CALIBRATION_REPORTING
+  // Uncomment to enable reporting (required for "G425 V", but consumes PROGMEM).
+  //#define CALIBRATION_REPORTING
 
-// The true location and dimension the cube/bolt/washer on the bed.
-#define CALIBRATION_OBJECT_CENTER 
-  {                               
-    264.0, -22.0, -2.0            
-  } // mm
-#define CALIBRATION_OBJECT_DIMENSIONS 
-  {                                   
-    10.0, 10.0, 10.0                  
-  } // mm
+  // The true location and dimension the cube/bolt/washer on the bed.
+  #define CALIBRATION_OBJECT_CENTER     { 264.0, -22.0,  -2.0 } // mm
+  #define CALIBRATION_OBJECT_DIMENSIONS {  10.0,  10.0,  10.0 } // mm
 
-// Comment out any sides which are unreachable by the probe. For best
-// auto-calibration results, all sides must be reachable.
-#define CALIBRATION_MEASURE_RIGHT
-#define CALIBRATION_MEASURE_FRONT
-#define CALIBRATION_MEASURE_LEFT
-#define CALIBRATION_MEASURE_BACK
+  // Comment out any sides which are unreachable by the probe. For best
+  // auto-calibration results, all sides must be reachable.
+  #define CALIBRATION_MEASURE_RIGHT
+  #define CALIBRATION_MEASURE_FRONT
+  #define CALIBRATION_MEASURE_LEFT
+  #define CALIBRATION_MEASURE_BACK
 
-// Probing at the exact top center only works if the center is flat. If
-// probing on a screwhead or hollow washer, probe near the edges.
-//#define CALIBRATION_MEASURE_AT_TOP_EDGES
+  // Probing at the exact top center only works if the center is flat. If
+  // probing on a screwhead or hollow washer, probe near the edges.
+  //#define CALIBRATION_MEASURE_AT_TOP_EDGES
 
-// Define the pin to read during calibration
-#ifndef CALIBRATION_PIN
-//#define CALIBRATION_PIN -1            // Define here to override the default pin
-#define CALIBRATION_PIN_INVERTING false // Set to true to invert the custom pin
-//#define CALIBRATION_PIN_PULLDOWN
-#define CALIBRATION_PIN_PULLUP
-#endif
+  // Define the pin to read during calibration
+  #ifndef CALIBRATION_PIN
+    //#define CALIBRATION_PIN -1            // Define here to override the default pin
+    #define CALIBRATION_PIN_INVERTING false // Set to true to invert the custom pin
+    //#define CALIBRATION_PIN_PULLDOWN
+    #define CALIBRATION_PIN_PULLUP
+  #endif
 #endif
 
 /**
@@ -1051,7 +1039,7 @@
 // @section lcd
 
 #if EITHER(ULTIPANEL, EXTENSIBLE_UI)
-  #define MANUAL_FEEDRATE { 50*60, 50*60, 4*60, 2*60 } // (mm/m) Feedrates for manual moves along X, Y, Z, E from panel
+  #define MANUAL_FEEDRATE { 50*60, 50*60, 4*60, 2*60 } // (mm/min) Feedrates for manual moves along X, Y, Z, E from panel
   #define SHORT_MANUAL_Z_MOVE 0.025 // (mm) Smallest manual Z move (< 0.1mm)
   #if ENABLED(ULTIPANEL)
     #define MANUAL_E_MOVES_RELATIVE // Display extruder move distance rather than "position"
@@ -2013,33 +2001,33 @@
    * Retract and prime filament on tool-change to reduce
    * ooze and stringing and to get cleaner transitions.
    */
-//#define TOOLCHANGE_FILAMENT_SWAP
-#if ENABLED(TOOLCHANGE_FILAMENT_SWAP)
-// Load / Unload
-#define TOOLCHANGE_FS_LENGTH 12                 // (mm) Load / Unload length
-#define TOOLCHANGE_FS_EXTRA_RESUME_LENGTH 0     // (mm) Extra length for better restart, fine tune by LCD/Gcode)
-#define TOOLCHANGE_FS_RETRACT_SPEED (50 * 60)   // (mm/m) (Unloading)
-#define TOOLCHANGE_FS_UNRETRACT_SPEED (25 * 60) // (mm/m) (On SINGLENOZZLE or Bowden loading must be slowed down)
+  //#define TOOLCHANGE_FILAMENT_SWAP
+  #if ENABLED(TOOLCHANGE_FILAMENT_SWAP)
+    // Load / Unload
+    #define TOOLCHANGE_FS_LENGTH              12  // (mm) Load / Unload length
+    #define TOOLCHANGE_FS_EXTRA_RESUME_LENGTH  0  // (mm) Extra length for better restart, fine tune by LCD/Gcode)
+    #define TOOLCHANGE_FS_RETRACT_SPEED   (50*60) // (mm/min) (Unloading)
+    #define TOOLCHANGE_FS_UNRETRACT_SPEED (25*60) // (mm/min) (On SINGLENOZZLE or Bowden loading must be slowed down)
 
-// Longer prime to clean out a SINGLENOZZLE
-#define TOOLCHANGE_FS_EXTRA_PRIME 0          // (mm) Extra priming length
-#define TOOLCHANGE_FS_PRIME_SPEED (4.6 * 60) // (mm/m) Extra priming feedrate
-#define TOOLCHANGE_FS_WIPE_RETRACT 0         // (mm/m) Retract before cooling for less stringing, better wipe, etc.
+    // Longer prime to clean out a SINGLENOZZLE
+    #define TOOLCHANGE_FS_EXTRA_PRIME          0  // (mm) Extra priming length
+    #define TOOLCHANGE_FS_PRIME_SPEED    (4.6*60) // (mm/min) Extra priming feedrate
+    #define TOOLCHANGE_FS_WIPE_RETRACT         0  // (mm/min) Retract before cooling for less stringing, better wipe, etc.
 
-// Cool after prime to reduce stringing
-#define TOOLCHANGE_FS_FAN -1        // Fan index or -1 to skip
-#define TOOLCHANGE_FS_FAN_SPEED 255 // 0-255
-#define TOOLCHANGE_FS_FAN_TIME 10   // (seconds)
+    // Cool after prime to reduce stringing
+    #define TOOLCHANGE_FS_FAN                 -1  // Fan index or -1 to skip
+    #define TOOLCHANGE_FS_FAN_SPEED          255  // 0-255
+    #define TOOLCHANGE_FS_FAN_TIME            10  // (seconds)
 
-// Swap uninitialized extruder with TOOLCHANGE_FS_PRIME_SPEED for all lengths (recover + prime)
-// (May break filament if not retracted beforehand.)
-//#define TOOLCHANGE_FS_INIT_BEFORE_SWAP
+    // Swap uninitialized extruder with TOOLCHANGE_FS_PRIME_SPEED for all lengths (recover + prime)
+    // (May break filament if not retracted beforehand.)
+    //#define TOOLCHANGE_FS_INIT_BEFORE_SWAP
 
-// Prime on the first T0 (If other, TOOLCHANGE_FS_INIT_BEFORE_SWAP applied)
-// Enable it (M217 V[0/1]) before printing, to avoid unwanted priming on host connect
-//#define TOOLCHANGE_FS_PRIME_FIRST_USED
+    // Prime on the first T0 (If other, TOOLCHANGE_FS_INIT_BEFORE_SWAP applied)
+    // Enable it (M217 V[0/1]) before printing, to avoid unwanted priming on host connect
+    //#define TOOLCHANGE_FS_PRIME_FIRST_USED
 
-/**
+    /**
      * Tool Change Migration
      * This feature provides G-code and LCD options to switch tools mid-print.
      * All applicable tool properties are migrated so the print can continue.
@@ -2057,16 +2045,13 @@
    * Position to park head during tool change.
    * Doesn't apply to SWITCHING_TOOLHEAD, DUAL_X_CARRIAGE, or PARKING_EXTRUDER
    */
-//#define TOOLCHANGE_PARK
-#if ENABLED(TOOLCHANGE_PARK)
-#define TOOLCHANGE_PARK_XY         
-  {                                
-    X_MIN_POS + 10, Y_MIN_POS + 10 
-  }
-#define TOOLCHANGE_PARK_XY_FEEDRATE 6000 // (mm/m)
-//#define TOOLCHANGE_PARK_X_ONLY          // X axis only move
-//#define TOOLCHANGE_PARK_Y_ONLY          // Y axis only move
-#endif
+  //#define TOOLCHANGE_PARK
+  #if ENABLED(TOOLCHANGE_PARK)
+    #define TOOLCHANGE_PARK_XY    { X_MIN_POS + 10, Y_MIN_POS + 10 }
+    #define TOOLCHANGE_PARK_XY_FEEDRATE 6000  // (mm/min)
+    //#define TOOLCHANGE_PARK_X_ONLY          // X axis only move
+    //#define TOOLCHANGE_PARK_Y_ONLY          // Y axis only move
+  #endif
 #endif // EXTRUDERS > 1
 
 /**
@@ -2887,9 +2872,9 @@
 //#define SPINDLE_FEATURE
 //#define LASER_FEATURE
 #if EITHER(SPINDLE_FEATURE, LASER_FEATURE)
-#define SPINDLE_LASER_ACTIVE_HIGH false // Set to "true" if the on/off function is active HIGH
-#define SPINDLE_LASER_PWM true          // Set to "true" if your controller supports setting the speed/power
-#define SPINDLE_LASER_PWM_INVERT false  // Set to "true" if the speed/power goes up when you want it to go slower
+  #define SPINDLE_LASER_ACTIVE_STATE    LOW    // Set to "HIGH" if the on/off function is active HIGH
+  #define SPINDLE_LASER_PWM             true   // Set to "true" if your controller supports setting the speed/power
+  #define SPINDLE_LASER_PWM_INVERT      false  // Set to "true" if the speed/power goes up when you want it to go slower
 
 #define SPINDLE_LASER_FREQUENCY 2500 // (Hz) Spindle/laser frequency (only on supported HALs: AVR and LPC)
 
@@ -3187,7 +3172,7 @@
 //#define GCODE_MOTION_MODES  // Remember the motion mode (G0 G1 G2 G3 G5 G38.X) and apply for X Y Z E F, etc.
 
 // Enable and set a (default) feedrate for all G0 moves
-//#define G0_FEEDRATE 3000 // (mm/m)
+//#define G0_FEEDRATE 3000 // (mm/min)
 #ifdef G0_FEEDRATE
 //#define VARIABLE_G0_FEEDRATE // The G0 feedrate is set by F in G0 motion mode
 #endif
@@ -3517,13 +3502,11 @@
   #if ENABLED(PRUSA_MMU2_S_MODE)
     #define MMU2_C0_RETRY   5             // Number of retries (total time = timeout*retries)
 
-#define MMU2_CAN_LOAD_FEEDRATE 800 // (mm/m)
-#define MMU2_CAN_LOAD_SEQUENCE        
-  {0.1, MMU2_CAN_LOAD_FEEDRATE},      
-      {60.0, MMU2_CAN_LOAD_FEEDRATE}, 
-  {                                   
-    -52.0, MMU2_CAN_LOAD_FEEDRATE     
-  }
+    #define MMU2_CAN_LOAD_FEEDRATE 800    // (mm/min)
+    #define MMU2_CAN_LOAD_SEQUENCE \
+      {  0.1, MMU2_CAN_LOAD_FEEDRATE }, \
+      {  60.0, MMU2_CAN_LOAD_FEEDRATE }, \
+      { -52.0, MMU2_CAN_LOAD_FEEDRATE }
 
 #define MMU2_CAN_LOAD_RETRACT 6.0   // (mm) Keep under the distance between Load Sequence values
 #define MMU2_CAN_LOAD_DEVIATION 0.8 // (mm) Acceptable deviation
