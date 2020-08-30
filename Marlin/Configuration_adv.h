@@ -1075,18 +1075,27 @@
    * LED Control Menu
    * Add LED Control to the LCD menu
    */
-//#define LED_CONTROL_MENU
-#if ENABLED(LED_CONTROL_MENU)
-#define LED_COLOR_PRESETS // Enable the Preset Color menu option
-#if ENABLED(LED_COLOR_PRESETS)
-#define LED_USER_PRESET_RED 255        // User defined RED value
-#define LED_USER_PRESET_GREEN 128      // User defined GREEN value
-#define LED_USER_PRESET_BLUE 0         // User defined BLUE value
-#define LED_USER_PRESET_WHITE 255      // User defined WHITE value
-#define LED_USER_PRESET_BRIGHTNESS 255 // User defined intensity
-//#define LED_USER_PRESET_STARTUP       // Have the printer display the user preset color on startup
-#endif
-#endif
+  //#define LED_CONTROL_MENU
+  #if ENABLED(LED_CONTROL_MENU)
+    #define LED_COLOR_PRESETS                 // Enable the Preset Color menu option
+    //#define NEO2_COLOR_PRESETS              // Enable a second NeoPixel Preset Color menu option
+    #if ENABLED(LED_COLOR_PRESETS)
+      #define LED_USER_PRESET_RED        255  // User defined RED value
+      #define LED_USER_PRESET_GREEN      128  // User defined GREEN value
+      #define LED_USER_PRESET_BLUE         0  // User defined BLUE value
+      #define LED_USER_PRESET_WHITE      255  // User defined WHITE value
+      #define LED_USER_PRESET_BRIGHTNESS 255  // User defined intensity
+      //#define LED_USER_PRESET_STARTUP       // Have the printer display the user preset color on startup
+    #endif
+    #if ENABLED(NEO2_COLOR_PRESETS)
+      #define NEO2_USER_PRESET_RED        255  // User defined RED value
+      #define NEO2_USER_PRESET_GREEN      128  // User defined GREEN value
+      #define NEO2_USER_PRESET_BLUE         0  // User defined BLUE value
+      #define NEO2_USER_PRESET_WHITE      255  // User defined WHITE value
+      #define NEO2_USER_PRESET_BRIGHTNESS 255  // User defined intensity
+      //#define NEO2_USER_PRESET_STARTUP       // Have the printer display the user preset color on startup for the second strip
+    #endif
+  #endif
 
 #endif // HAS_LCD_MENU
 
@@ -2443,7 +2452,7 @@
    * CHOPPER_DEFAULT_24V
    * CHOPPER_DEFAULT_36V
    * CHOPPER_09STEP_24V   // 0.9 degree steppers (24V)
-   * CHOPPER_PRUSAMK3_24V // Imported parameters from the official Prusa firmware for MK3 (24V)
+   * CHOPPER_PRUSAMK3_24V // Imported parameters from the official Průša firmware for MK3 (24V)
    * CHOPPER_MARLIN_119   // Old defaults from Marlin v1.1.9
    *
    * Define you own with
@@ -3424,61 +3433,57 @@
 #endif
 
 /**
- * Prusa Multi-Material Unit v2
+ * Průša Multi-Material Unit v2
  * Enable in Configuration.h
  */
 #if ENABLED(PRUSA_MMU2)
 
-// Serial port used for communication with MMU2.
-// For AVR enable the UART port used for the MMU. (e.g., internalSerial)
-// For 32-bit boards check your HAL for available serial ports. (e.g., Serial2)
-#define INTERNAL_SERIAL_PORT 2
-#define MMU2_SERIAL internalSerial
+  // Serial port used for communication with MMU2.
+  // For AVR enable the UART port used for the MMU. (e.g., internalSerial)
+  // For 32-bit boards check your HAL for available serial ports. (e.g., Serial2)
+  #define INTERNAL_SERIAL_PORT 2
+  #define MMU2_SERIAL internalSerial
 
-// Use hardware reset for MMU if a pin is defined for it
-//#define MMU2_RST_PIN 23
+  // Use hardware reset for MMU if a pin is defined for it
+  //#define MMU2_RST_PIN 23
 
-// Enable if the MMU2 has 12V stepper motors (MMU2 Firmware 1.0.2 and up)
-//#define MMU2_MODE_12V
+  // Enable if the MMU2 has 12V stepper motors (MMU2 Firmware 1.0.2 and up)
+  //#define MMU2_MODE_12V
 
-// G-code to execute when MMU2 F.I.N.D.A. probe detects filament runout
-#define MMU2_FILAMENT_RUNOUT_SCRIPT "M600"
+  // G-code to execute when MMU2 F.I.N.D.A. probe detects filament runout
+  #define MMU2_FILAMENT_RUNOUT_SCRIPT "M600"
 
-// Add an LCD menu for MMU2
-//#define MMU2_MENUS
-#if ENABLED(MMU2_MENUS)
-// Settings for filament load / unload from the LCD menu.
-// This is for Prusa MK3-style extruders. Customize for your hardware.
-#define MMU2_FILAMENTCHANGE_EJECT_FEED 80.0
-#define MMU2_LOAD_TO_NOZZLE_SEQUENCE 
-  {7.2, 1145},                       
-      {14.4, 871},                   
-      {36.0, 1393},                  
-      {14.4, 871},                   
-  {                                  
-    50.0, 198                        
-  }
+  // Add an LCD menu for MMU2
+  //#define MMU2_MENUS
+  #if ENABLED(MMU2_MENUS)
+    // Settings for filament load / unload from the LCD menu.
+    // This is for Průša MK3-style extruders. Customize for your hardware.
+    #define MMU2_FILAMENTCHANGE_EJECT_FEED 80.0
+    #define MMU2_LOAD_TO_NOZZLE_SEQUENCE \
+      {  7.2, 1145 }, \
+      { 14.4,  871 }, \
+      { 36.0, 1393 }, \
+      { 14.4,  871 }, \
+      { 50.0,  198 }
 
-#define MMU2_RAMMING_SEQUENCE 
-  {1.0, 1000},                
-      {1.0, 1500},            
-      {2.0, 2000},            
-      {1.5, 3000},            
-      {2.5, 4000},            
-      {-15.0, 5000},          
-      {-14.0, 1200},          
-      {-6.0, 600},           
-      {10.0, 700},            
-      {-10.0, 400},           
-  {                           
-    -50.0, 2000               
-  }
-#endif
+    #define MMU2_RAMMING_SEQUENCE \
+      {   1.0, 1000 }, \
+      {   1.0, 1500 }, \
+      {   2.0, 2000 }, \
+      {   1.5, 3000 }, \
+      {   2.5, 4000 }, \
+      { -15.0, 5000 }, \
+      { -14.0, 1200 }, \
+      {  -6.0,  600 }, \
+      {  10.0,  700 }, \
+      { -10.0,  400 }, \
+      { -50.0, 2000 }
+  #endif
 
 /**
    * MMU Extruder Sensor
    *
-   * Support for a Prusa (or other) IR Sensor to detect filament near the extruder
+   * Support for a Průša (or other) IR Sensor to detect filament near the extruder
    * and make loading more reliable. Suitable for an extruder equipped with a filament
    * sensor less than 38mm from the gears.
    *
